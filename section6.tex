@@ -1,0 +1,152 @@
+\section{Format and Special \LaTeX{} Environments} 
+
+You must write your seminar paper using a (scientific) word processing programme. \LaTeX{} is
+strongly recommended. A style file will be provided to fulfil formatting requirements.
+\cite{TUG} provides a great overview of the \LaTeX{} package, integrated development environments
+(IDE), cheat sheets, and supplementary software for the \LaTeX{} novice. A very good (and free!)
+overview of \LaTeX{} is provided in~\cite{Oet23}. 
+
+If you wish to use a different word processing programme, please use Arial (font size 11 pt) or
+Times New Roman (font size 12 pt) as font. Please ensure that you use the same font throughout the
+document (header, footer, page numbers, and text). Use a line spacing of 1.3 for the general text.
+The margins should be about 2.5 cm. The text should be formatted as justified text with hyphenation.
+The length of the seminar paper is expected to be about 15 pages excluding table of contents,
+references, and appendixes. According to the statutes of the Master's programme, the seminar paper
+must be a minimum of 3000 and a maximum of 6000 words equivalent to 10--20 pages. Multilevel
+numbered sections are to be used with a maximum depth of 3. Footnotes\footnote{This is a footnote}
+should be avoided as they disrupt the reading flow and clash with the layout line at the bottom of
+the page.
+
+\subsection{How to Equations} %% <= This is a subsection (i.e., a section of order 2)
+\LaTeX~is outstanding for mathematical typesetting and used extensively in the scientific research
+community. You can write simple equations in line ${a^2 + b^2 = c^2}$. Alternatively, you may write
+an equation as paragraph
+\begin{equation}
+    C = W \, \log_2 \left( 1 + \frac{P}{N_0 \, W} \right).
+    \label{eq:cap}
+\end{equation}
+You may also write an equation in a new line without numbering
+\[ a^2 + b^2 = c^2, \]
+or alternatively mark the environment with a *
+\begin{equation*}
+    \sum_{k=1}^n k = \frac{n\,(n+1)}{(2}.
+\end{equation*}
+However, a number is great because you can reference to it once you provide a label, e.g., Equation
+\eqref{eq:cap} depicts the famous channel capacity $C$ derived by Claude Shannon in \cite{Sha48}. It
+is also possible to nicely set aligned systems of equations:
+\begin{align}
+    x + y & = 5 \\
+    y & = 1. \\
+\end{align}
+
+Text within formulae (above all, formulae only consisting of text!) should be avoided and the
+formula should rather be explained in the main text. If it is absolutely unavoidable, text should be
+used as
+\begin{verbatim}
+     \text{text within an equation environment.}
+\end{verbatim}
+Spacing within formulas can be adapted with commands such as
+\begin{verbatim}
+    \quad or \,
+\end{verbatim}
+The following Equation~\eqref{quad} shows the impact of \verb|\quad|, \verb|\,|, and \verb|\text{abc}|:
+\begin{equation}
+    \label{quad} \forall x \in \{ z\in\mathbb{C} \,|\, z = a + j\,b, \ a \in \mathbb{R}, \text{ and }
+    b = 0 \}: \quad x \in \mathbb{R}.
+\end{equation}
+Please check~\cite{TUG, Oet23} for much more on mathematical typesetting in \LaTeX{} as well as
+helpful cheat sheets.
+
+\subsection{How to Tables}
+Table~\ref{tab:mytable} are also easily created. Make sure that the same font as in the main text is
+also used within the tables. Each table must be referenced in the text (on the same or the following
+page). Tables are typically placed on top of a page. The caption goes at the top.
+\begin{table}[t]
+    \caption{This is a table.}      %% caption of tables is on top of the table
+    \label{tab:mytable}  
+    \centering 
+    \setlength{\tabcolsep}{4.5pt}
+    \begin{tabular}{|l|c|r|}        %% align columns left, center, right; use vertical lines as separator
+        \hline
+        \textbf{Value 1} & \textbf{Value 2} & \textbf{Value 3}\\
+        $\alpha$ & $\beta$ & $\gamma$ \\
+        \hline               
+        $1$ & $10$ & long \\
+        $2$ & $20$ & short \\
+        $3$ & $30$ & wide \\
+        \hline 
+    \end{tabular}
+\end{table}
+
+\subsection{How to Figures}
+Images/Figures are also easily placed in \LaTeX. In Figure~\ref{fig:thilogo} the logo of THI is
+depicted.  Place figures at the top of the page, unless it is very small and fits into the flow of
+the paper. The caption goes below the figure. Each figure must be referenced in the main text. Do
+not forget to properly cite the source if you have copied the figure. You need not state, however,
+that the figure has been created by yourself.
+\begin{figure}[t]
+    \centering 
+    \includegraphics[width=8em]{thi_logo_b_RGB.png}
+    \caption{This is our THI logo.}     %% captions of figures below the figure
+    \label{fig:thilogo}
+\end{figure}
+
+\subsubsection{TikZ} %% don't go deeper than subsubsections
+Fonts in figures should be (approximately) the same size as used for the text in the body of the
+paper. Figures need to be of camera--ready quality. As a general rule, use jpg format for photos and
+png format for images with text and lines that you could not vectorise. You should always think
+about not copying but redrawing a figure. 
+
+A very powerful extension to \LaTeX{} is the TikZ environment which allows to create simple (and
+very complex!) graphic elements. A brief example can be seen in Figure~\ref{fig:tikzsystem}.
+\begin{figure}[t]
+    \centering
+    \begin{tikzpicture}
+        [->, >=stealth', shorten >= 1pt, auto, node distance = 4cm, thick, inner sep = 3mm,
+        box/.style = {rectangle, draw=black, very thick, align=center}, empty/.style = {rectangle}]
+
+        %% place elements on canvas
+        \node[empty] (input) at (0,0)              {~};
+        \node[box] (system1) [right of = input]    {system 1}; 
+        \node[box] (system2) [right of = system1]  {system 2};
+        \node[empty] (output) [right of = system2] {~};
+
+        %% connect elements
+        \path (input)   edge node [inner sep = 1mm] {$x[n]$} (system1);
+        \path (system1) edge node [inner sep = 1mm] {$y[n]$} (system2);
+        \path (system2) edge node [inner sep = 1mm] {$z[n]$} (output);
+    \end{tikzpicture}
+    \caption{A simple system diagram using TikZ.}
+    \label{fig:tikzsystem}
+\end{figure}
+Figure~\ref{fig:tikznn} depicts a neural network with three layers of nodes.
+\begin{figure}[t]
+    \centering
+    \begin{tikzpicture}[->,
+        line/.style = {draw = black,>=stealth'}]
+        \foreach \i/\name in {0/Input, 1/Hidden, 2/Output}
+            \foreach \j in {1,2,3}
+                \path node[draw, circle, thick] (n\i-\j) at (\i*4,\j*4) {$\mathrm{\name}_\j$};
+        \foreach \i in {0,1}
+            \foreach \j in {1,2,3}
+                \foreach \k in {1,2,3}
+                    \path[line] (n\i-\j) -- (n\the\numexpr\i+1\relax-\k);
+    \end{tikzpicture}
+    \caption{Neural network.}
+    \label{fig:tikznn}
+\end{figure}
+
+\subsection{How to Code}
+It is also easy to add code in your paper as seen in Listing~\ref{lst:code} -- although it is
+hardly ever required and beneficial. The perfect place for your code is either github or the Appendix.
+\lstset{language=Python}
+\lstset{frame=lines}
+\lstset{caption={Insert code directly in your document.}}
+\lstset{label={lst:code}}
+\lstset{basicstyle=\footnotesize}
+\begin{lstlisting}
+    from brg.datastructures import Mesh
+     
+    mesh = Mesh.from_obj('faces.obj')
+    mesh.draw()
+\end{lstlisting}

@@ -1,0 +1,120 @@
+%%********************************************************************
+%% Technische Hochschule Ingolstadt 
+%%
+%% To be used as style template for seminar papers in the 
+%% Master's Programme AI Engineering of Autonomous Systems
+%% Faculty of Electrical Engineering and Information Technology
+%%
+%% by Prof. Dr.-Ing. Michael Mecking  
+%% based on a style file by Prof. Dr.-Ing. Munir Georges
+%%********************************************************************
+
+\documentclass[11pt, titlepage, english, a4paper]{article}
+
+\usepackage[top=1.2in, bottom=1.4in, inner=1.1in, outer=1.1in]{geometry}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}         %% an English document with English setting and hyphanation
+\usepackage{algorithmic}            %% number of commands for typesetting popular algorithmic constructs
+\usepackage{listings}               %% typeset programs (programming code) within LaTeX
+\usepackage{longtable}              %% write tables that continue to the next page
+\usepackage{float}                  %% prevents repositioning of tables using [H]
+\usepackage{fancyhdr,lipsum}        %% control of headers and footers 
+\usepackage{lmodern}                %% modern font family 
+\usepackage[T1]{fontenc}            %% 8-bit font encoding... more glyphs... easier copy&paste from the output (pdf) files
+
+\usepackage{amsmath,bm}             %% ams math symbols
+\usepackage{amsbsy}                 %% bold mathematics symbols where appropriate fonts exist
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{eulervm}                %% Don Knuth's beautiful (my favourite!) math font
+\usepackage{fixmath}                %% uppercase Greek be typeset in italic style
+
+\usepackage[pdftex]{graphicx}
+\usepackage[pdftex]{xcolor}
+\usepackage[autostyle]{csquotes}    %% quotation according to language requirements
+\usepackage{units}
+\usepackage{hhline}
+\usepackage{titling}
+\usepackage{blindtext}
+\usepackage{multirow}
+\usepackage{lastpage}
+\usepackage{afterpage}
+\usepackage{hyperref}               %% hypertext in LaTeX
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  TikZ setup
+\usepackage{tikz}                   %% add more libraries if needed
+\usetikzlibrary{arrows,automata,shadows,positioning,decorations.pathreplacing,matrix,calc,%
+backgrounds,patterns,shapes,shapes.gates.logic.IEC,intersections,through}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%  Definition of mathematical functions/operators for simpler syntax
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Mod}{mod}
+\DeclareMathOperator{\artanh}{artanh}
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\arc}{arc}
+\DeclareMathOperator{\Arg}{Arg}
+\renewcommand{\Re}{\mathrm{Re}}
+\renewcommand{\Im}{\mathrm{Im}}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\defekt}{def}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\argmin}{arg\,min}
+\DeclareMathOperator{\argmax}{arg\,max}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%%  use the provided LaTeX-style file for your seminar paper
+\input{style.tex}
+\renewcommand{\arraystretch}{1.2}       %% space between lines in tables
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\title{Title of Your Seminar Paper \\   %
+    (Not too long!)}                    %% <= Title of your seminar paper
+\shorttitle{Short Title in Header}      %% <= (short) title for header
+\author{FirstName LastName}             %% <= your name 
+\supervisor{Prof. Dr.-Ing. Michael Mecking}
+
+
+%% OK, let's go
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\begin{document}
+%   \afterpage{\blankpage}  %% optional for additional blank page
+    \maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+%   \afterpage{\blankpage} % optional for additional blank page
+    \input{abstract.tex}    %% <= write your abstract
+    \thispagestyle{empty}
+    \newpage
+    
+%   \afterpage{\blankpage}  %% optional for additional blank page
+    \tableofcontents
+    \thispagestyle{empty}
+    \newpage
+    \setcounter{page}{1}
+    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+    \input{section1.tex}    %% <= write sections of seminar paper
+    \input{section2.tex}    
+    \input{section3.tex}        
+    \input{section4.tex}   
+    \input{section5.tex}
+    \input{section6.tex}
+    \input{section7.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \newpage
+    \addcontentsline{toc}{section}{References}
+    \bibliographystyle{IEEEtran}
+    \bibliography{references}      %% <= add your references.bib
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \newpage
+    \appendix
+    \input{appendix}        %% <= appendices if needed, uncomment otherwise 
+    \input{declaration}     %% <= you have to sign this! 
+\end{document}
